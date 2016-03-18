@@ -1,0 +1,39 @@
+<template name="signIn">
+    {{#if toggleLoginRegister}}
+        {{>register}}
+    {{else}}
+        {{>login}}
+    {{/if}}
+</template>
+
+<template name="login">
+    <div class="row well menu30">
+        <form class="form">
+            <h2>Log In</h2>
+            <input class="form-control" type="text" placeholder="Username" name="loginUsername">
+            <br>
+            <input class="form-control" type="password" placeholder="Password" name="loginPassword">
+            <br><p style="color:red">{{loginError}}</p>
+            <input class="form-control" type="submit" value="Login">
+        </form>
+        <br>
+        <i>Don't have an account? <a id="registerOption">Register</a></i>
+    </div>
+</template>
+
+<template name="register">
+    <div class="row well menu30 menu">
+        <form class="form">
+            <h2>Register</h2>
+            <input class="form-control" type="text" placeholder="Username" name="registerUsername">
+            <br>
+            <input class="form-control" type="password" placeholder="Password" name="registerPassword">
+            <br>
+            <input class="form-control" type="password" placeholder="Confirm Password" name="registerPasswordConfirm">
+            <br><p style="color:red">{{registerError}}</p>
+            <input class="form-control" type="submit" value="Register">
+        </form>
+        <br>
+        <i>Already have an account? <a id="loginOption">Log In</a></i>
+    </div>
+</template>

@@ -1,0 +1,69 @@
+<template name="roomMenuWrapper">
+    {{#if menuButtons.joinRoomBtn}}
+        {{> joinRoom}}
+    {{else}}
+        {{#if menuButtons.createRoomBtn}}
+            {{> createRoom}}
+        {{else}}
+            {{> roomMenu}}
+        {{/if}}
+    {{/if}}
+</template>
+
+<template name="roomMenu">
+    <div class="row well menu30">
+        <div class="col-sm-6">
+            <h4>Join a Room</h4>
+            <button id="joinRoomBtn" class="btn">Join room</button>
+        </div>
+        <div class="col-sm-6">
+            <h4>Create a new room</h4>
+
+            <button id="createRoomBtn" class="btn">Create Room</button>
+        </div>
+    </div>
+</template>
+
+<template name="joinRoom">
+    <div class="row well menu30">
+        <h4>Join Room</h4>
+        <h4><small>Room List</small></h4>
+        <table class="table table-hover">
+            <thead>
+                <th>Name</th>
+                <th>Room Creator</th>
+                <th>Players</th>
+            </thead>
+            <tbody>
+                {{#each rooms}}
+                    {{> room}}
+                {{/each}}
+            </tbody>
+        </table>
+        <br>
+        <button id="joinRoomBackBtn" class="btn backBtn">Back</button>
+        <button id="joinRoomJoinBtn" class="btn">Join Room</button>
+    </div>
+</template>
+
+<template name="room">
+    <tr {{isHighlighted roomname}}>
+        <td>{{roomname}}</td>
+        <td>{{roomCreator}}</td>
+        <td>{{players.length}} / {{maxPlayers}}</td>
+    </tr>
+</template>
+
+<template name="createRoom">
+    <div class="row well menu30">
+        <h4>Create New Room</h4>
+        <form id="createRoomForm">
+            <input type="text" name="inputRoomName" class="form-control" placeholder="Room Name" required autofocus>
+            <br>
+            <input type="number" name="inputMaxPlayers" class="form-control" placeholder="Max Players" required>
+            <br>
+        <button id="createRoomBackBtn" class="btn backBtn">Back</button>
+        <button type="submit" id="createRoomCreateBtn" class="btn">Create Room</button>
+        </form>
+    </div>
+</template>

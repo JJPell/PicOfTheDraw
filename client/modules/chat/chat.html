@@ -1,0 +1,22 @@
+<template name="chat">
+    <div id="chatBox" class="well">
+        {{> messages}}
+        {{> input}}
+    </div>
+</template>
+
+<template name="messages">
+    <div id="messages">
+        {{#each messages}}
+            {{> message}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="message">
+    <p><strong>{{user}}</strong> <span style="font-size: 0.5em; color: darkgray">({{timestamp}})</span>: <span>{{msg}}</span></p>
+</template>
+
+<template name="input">
+    <input type="text" id="message" placeholder="Your message goes here...">
+</template>

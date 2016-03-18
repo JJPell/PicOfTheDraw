@@ -1,0 +1,39 @@
+<template name="userList">
+    <div id="userList" class="well">
+        {{> menu}}
+        <h4>Room: {{roomname}}</h4>
+        <table class="table table-responsive">
+            <thead>
+                {{#if roomCreator}}
+                    <th>Draw</th>
+                {{/if}}
+                <th>Ping</th>
+                <th>Player</th>
+                <th>Score</th>
+                {{#if roomCreator}}
+                    <th>Kick</th>
+                {{/if}}
+            </thead>
+            <tbody>
+                {{#each players}}
+                    {{> user}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="user">
+    <tr>
+        {{#if roomCreator}}
+            <td><button class="btn btn-sm draw">Draw</button></td>
+        {{/if}}
+        <td>30</td>
+        <td>{{username}}</td>
+        <td>0</td>
+        {{#if roomCreator}}
+            <td><button class="btn btn-sm kick">Kick</button></td>
+        {{/if}}
+
+    </tr>
+</template>

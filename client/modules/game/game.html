@@ -1,0 +1,15 @@
+<template name="game">
+
+    {{> toolbar}}
+
+    {{#if playersTurn currentUser}}
+        {{> canvas}}
+    {{else}}
+        {{> svg}}
+    {{/if}}
+
+    {{> userList}}
+    {{> chat}}
+
+</template>
+

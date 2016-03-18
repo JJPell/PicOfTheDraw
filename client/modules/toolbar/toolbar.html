@@ -1,0 +1,11 @@
+<template name="toolbar">
+    <div id="toolbar" class="well">
+        {{#each tools}}
+            {{> tool}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="tool">
+    <button id={{id}} class="btn" name={{name}}></button>
+</template>

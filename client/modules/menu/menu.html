@@ -1,0 +1,16 @@
+<template name="menu">
+    <button id="menu" class="btn">Menu <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
+</template>
+
+<template name="menuOnClick">
+    <menu id="menuOnClickOverlay">
+        <div id="menuOnClick" class="row well">
+            <div class="text-center list-group">
+                <button id="leaveRoom" type="button" class="text-center list-group-item {{#if room currentUser}}{{else}}disabled{{/if}}" >Leave Room</button>
+                <button id="changePassword" type="button" class="list-group-item">Change Password</button>
+                <button id="logOut" type="button" class="list-group-item">Log out</button>
+            </div>
+            <button id="closeMenu" type="button" class="list-group-item">Close Menu</button>
+        </div>
+    </menu>
+</template>
