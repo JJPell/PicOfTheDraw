@@ -47,8 +47,9 @@ _setButton = function (button) {
     Session.set("menuButtons", mBtns);
 };
 
-_joinRoom = function (roomname, user = Meteor.user()) {
+_joinRoom = function (roomname) {
 
+    let user = Meteor.user();
     let room = Rooms.findOne({roomname: roomname});
     let players = room.players;
     let playersId = room.playersId;
@@ -58,7 +59,7 @@ _joinRoom = function (roomname, user = Meteor.user()) {
         playersId[playersId.length] = user._id;
 
         console.log(players);
-        Rooms.update({_id: room._id}, {$set: {players: players, playersId: playersId}});
+        Rooms.update({_id: room._id}, {$set: {playersId: playersId, players: players}});
 
         Session.set("room", roomname);
 

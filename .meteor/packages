@@ -21,3 +21,4 @@ twbs:bootstrap
 accounts-ui
 accounts-password
 buildateam:fabric
+bobbigmac:svgo-wrapper

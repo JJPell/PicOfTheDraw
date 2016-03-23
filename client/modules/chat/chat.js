@@ -3,8 +3,8 @@
  */
 
 _sendMessage = function (elementId) {
-    var el = document.getElementById(elementId);
-    Messages.insert({user: Meteor.user().username, msg: el.value, ts: new Date(), room: Session.get("roomname")});
+    let el = document.getElementById(elementId);
+    Messages.insert({user: Meteor.user(), msg: el.value, ts: new Date(), room: _getRoom().roomname});
     el.value = "";
     el.focus();
     el.scrollTop = el.scrollHeight;
@@ -18,16 +18,16 @@ Template.chat.helpers({
 
 Template.messages.helpers({
     messages: function () {
-        return Messages.find({room: Session.get("roomname")}, {sort: {ts: 1}});
+        return Messages.find({room: _getRoom().roomname}, {sort: {ts: 1}});
     },
     roomname: function () {
-        return Session.get("roomname");
+        return _getRoom().roomname;
     }
 });
 
 Template.message.helpers({
     timestamp: function () {
-        return this.ts.toLocaleString();
+        return this.ts.toLocaleTimeString();
     }
 });
 

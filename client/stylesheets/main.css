@@ -4,7 +4,7 @@ html, body {
     width: 100%;
     height: 100%;
     text-align: center;
-    background: url("tableTexture.jpg");
+    background: url("images/tableTexture.jpg");
 }
 
 #drawAreaContainer {
@@ -16,7 +16,7 @@ html, body {
 }
 
 .canvas-container {
-    background: url("paperTexture.jpg");
+    background: url("images/paperTexture.jpg");
     position: relative;
     margin: auto;
     top: 50%;
@@ -38,7 +38,7 @@ html, body {
     padding: 0;
 }
 
-#toolbar button {
+.tool {
     width: 36px;
     height: 36px;
     margin: 6px;
@@ -87,7 +87,7 @@ html, body {
 }
 
 svg {
-    background: url("paperTexture.jpg");
+    background: url("images/paperTexture.jpg");
     position: relative;
     margin: auto;
     top: 50%;
@@ -100,7 +100,7 @@ svg {
     width:100%;
     height: 100%;
     z-index: 900;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(128, 128, 128, 0.6);
     margin: 0;
 }
 

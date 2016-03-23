@@ -1,3 +1,9 @@
+_getRoom = function () {
+    let mUser = Meteor.user();
+    let room = Rooms.findOne({playersId: {$in:[mUser._id]}});
+    return room;
+}
+
 Template.body.helpers({
     room: function (currentUser) {
         if(currentUser) {

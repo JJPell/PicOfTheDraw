@@ -6,11 +6,15 @@
     <menu id="menuOnClickOverlay">
         <div id="menuOnClick" class="row well">
             <div class="text-center list-group">
-                <button id="leaveRoom" type="button" class="text-center list-group-item {{#if room currentUser}}{{else}}disabled{{/if}}" >Leave Room</button>
-                <button id="changePassword" type="button" class="list-group-item">Change Password</button>
-                <button id="logOut" type="button" class="list-group-item">Log out</button>
+                {{#each button}}
+                    {{> menuButton}}
+                {{/each}}
             </div>
             <button id="closeMenu" type="button" class="list-group-item">Close Menu</button>
         </div>
     </menu>
+</template>
+
+<template name="menuButton">
+    <button {{this.attributes}}>{{this.text}}</button>
 </template>

@@ -61,6 +61,14 @@ _canvasDimensions = function (containerId) {
 
 };
 
+_updateCanvas = function () {
+    let svg = _trimSvgData(canvas.toSVG());
+    Session.set("svg", svg);
+
+    let latestDrawing = Drawings.findOne({}, {sort: {ts: -1}});
+    _updateDrawing(latestDrawing._id,  svg);
+}
+
 Template.canvas.onRendered(function () {
 
     let cWidth = _canvasDimensions("drawAreaContainer").width;
@@ -74,11 +82,14 @@ Template.canvas.onRendered(function () {
         width: cWidth,
         height:cHeight
     });
+    canvas.freeDrawingCursor = "url('pencil.png'), crosshair";
 
     let svg = _trimSvgData(canvas.toSVG());
     Session.set("svg", svg);
 
     _insertDrawing(svg, cWidth, cHeight);
+
+    _setBrushSize(1);
 
 
 });
@@ -86,12 +97,7 @@ Template.canvas.onRendered(function () {
 Template.canvas.events({
     'click': function() {
 
-        let svg = _trimSvgData(canvas.toSVG());
-        Session.set("svg", svg);
-
-        let latestDrawing = Drawings.findOne({}, {sort: {ts: -1}});
-        _updateDrawing(latestDrawing._id,  svg);
-        //console.log(canvas.toSVG())
+        _updateCanvas();
 
     }
 });
