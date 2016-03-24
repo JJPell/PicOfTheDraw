@@ -10,23 +10,19 @@ _insertDrawing = function (drawingData, width, height) {
         ts: new Date(),
         room: Session.get("roomname"),
         data: drawingData,
+        optimised: true,    // Prevents SVG Optimiser removing empty SVG.
         dimensions: {width: width, height: height}
     });
 };
 
 _updateDrawing = function (criteria, drawingData) {
     Drawings.update(criteria,
-        {$set: {data: drawingData}
+        {$set: {data: drawingData, optimised: false}
         });
+    console.log("_updateDrawing");
 };
 
-_trimSvgData = function (data) {
-    let svg = data;
-    svg = svg.substring(svg.indexOf("<svg"));
-    return svg;
-};
-
-_editSvgData = function (data, oldSize, newSize) {
+_setSvgDimensions = function (data, oldSize, newSize) {
 
     let svg = data;
     if(oldSize && newSize) {
@@ -53,8 +49,11 @@ _canvasDimensions = function (containerId) {
         }
 
         let padding = (0.2 * dimensions.width);
-        dimensions.width = (dimensions.width - padding);
-        dimensions.height = (dimensions.height - padding);
+        dimensions.width -= padding;
+        dimensions.height -= padding;
+
+        dimensions.width = Math.round(dimensions.width);
+        dimensions.height = Math.round(dimensions.height);
 
         return dimensions;
     }
@@ -62,12 +61,12 @@ _canvasDimensions = function (containerId) {
 };
 
 _updateCanvas = function () {
-    let svg = _trimSvgData(canvas.toSVG());
+    let svg = canvas.toSVG();
     Session.set("svg", svg);
 
     let latestDrawing = Drawings.findOne({}, {sort: {ts: -1}});
     _updateDrawing(latestDrawing._id,  svg);
-}
+};
 
 Template.canvas.onRendered(function () {
 
@@ -84,7 +83,7 @@ Template.canvas.onRendered(function () {
     });
     canvas.freeDrawingCursor = "url('pencil.png'), crosshair";
 
-    let svg = _trimSvgData(canvas.toSVG());
+    let svg = canvas.toSVG();
     Session.set("svg", svg);
 
     _insertDrawing(svg, cWidth, cHeight);
@@ -111,11 +110,12 @@ Template.svg.onRendered(function () {
 Template.svg.helpers({
     svgData: function() {
 
-        let svgData = Drawings.findOne({}, {sort: {ts: -1}}).data;
-        let currentDimensions = Drawings.findOne({}, {sort: {ts: -1}}).dimensions;
-        let newDimensions = Session.get("canvasDimensions")
+        let drawing = Drawings.findOne({optimised: true}, {sort: {ts: -1}});
+        let svgData = drawing.data;
+        let currentDimensions = drawing.dimensions;
+        let newDimensions = Session.get("canvasDimensions");
 
-        return _editSvgData(svgData, currentDimensions, newDimensions);
+        return _setSvgDimensions(svgData, currentDimensions, newDimensions);
 
     }
 });

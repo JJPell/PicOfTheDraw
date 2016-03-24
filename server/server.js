@@ -24,7 +24,8 @@ _removeRoom = function (id, roomname) {
 
 _checkForRoomCreator = function (roomId, playersId, callback) {
 
-    let room = Rooms.findOne({_id: roomId});
+    let room;
+    room = Rooms.findOne({_id: roomId});
     let roomCreatorId = room.roomCreatorId;
     let roomname = room.roomname;
 
