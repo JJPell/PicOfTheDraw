@@ -13,7 +13,11 @@
             {{> roomMenuWrapper}}
         {{/if}}
     {{else}}
-        {{> signIn}}
+        {{#if loggingInClicked}}
+            {{> signIn}}
+        {{else}}
+            {{> splash}}
+        {{/if}}
     {{/if}}
 
 </body>

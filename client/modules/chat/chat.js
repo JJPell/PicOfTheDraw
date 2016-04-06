@@ -4,16 +4,23 @@
 
 _sendMessage = function (elementId) {
     let el = document.getElementById(elementId);
-    Messages.insert({user: Meteor.user(), msg: el.value, ts: new Date(), room: _getRoom().roomname});
-    el.value = "";
-    el.focus();
-    el.scrollTop = el.scrollHeight;
+    if(el.value) {
+        Messages.insert({user: Meteor.user(), msg: el.value, ts: new Date(), room: _getRoom().roomname});
+        el.value = "";
+        el.focus();
+    }
+    $("#messages").scrollTop($("#messages")[0].scrollHeight);
+
 };
 
 Template.chat.helpers({
     creatingRoom: function () {
         return Session.get("creatingRoom");
     }
+});
+
+Template.messages.onRendered(function () {
+    $("#messages").scrollTop($("#messages")[0].scrollHeight);
 });
 
 Template.messages.helpers({
@@ -26,6 +33,13 @@ Template.messages.helpers({
 });
 
 Template.message.helpers({
+    serverMsg: function () {
+        if(this.user === "server") {
+            return true;
+        } else {
+            return false;
+        }
+    },
     timestamp: function () {
         return this.ts.toLocaleTimeString();
     }

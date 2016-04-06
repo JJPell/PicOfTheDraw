@@ -24,8 +24,13 @@ _leaveRoom = function (user) {
 };
 
 _kickPlayer = function (user) {
-    _leaveRoom(user);
-    _addToBlackList(user);
+    let room = Rooms.findOne({playersId: {$in:[user._id]}})
+    if(user._id !== room.roomCreatorId) {
+        _leaveRoom(user);
+        _addToBlackList(user);
+    } else {
+        console.error("Cannot kick player: '"+user.username+"' as user _id matches room creator _id.");
+    }
 };
 
 Template.userList.helpers({

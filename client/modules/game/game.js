@@ -6,5 +6,16 @@ Template.game.helpers({
     playersTurn: function (player) {
         let roomPlayerDrawing = Rooms.findOne({players: {$in:[player.username]}}).playerDrawing;
         return (player.username === roomPlayerDrawing);
+    },
+    inputWord: function () {
+        let room = Session.get("room");
+        if(room) {
+            let drawing = Drawings.findOne({room: room}, {sort: {ts: -1}});
+            if(drawing && drawing.word && !drawing.guessed) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 });

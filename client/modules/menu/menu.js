@@ -72,6 +72,7 @@ Template.menuOnClick.helpers({
         let buttons = [
             new button({id: "leaveRoom", text: "Leave Room"}),
             new button({id: "changePassword", text: "Change Password"}),
+            new button({id: "about", text: "About"}),
             new button({id: "logOut", text: "Log Out"})
         ];
         _buttonConditions(buttons);
@@ -86,6 +87,9 @@ Template.menuOnClick.events({
         Session.set("menuClicked", false);
     },
     "click #changePassword": function (event) {
+        Session.set("menuClicked", false);
+    },
+    "click #about": function (event) {
         Session.set("menuClicked", false);
     },
     "click #logOut": function (event) {

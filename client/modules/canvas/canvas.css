@@ -1,0 +1,7 @@
+#wordInput {
+    width: 70%;
+    position: relative;
+    margin: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}

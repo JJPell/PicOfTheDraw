@@ -14,7 +14,11 @@
 </template>
 
 <template name="message">
-    <p><strong>{{user.username}}</strong> <span style="font-size: 0.5em; color: darkgray">({{timestamp}})</span>: <span>{{msg}}</span></p>
+    {{#if serverMsg}}
+        <p style="color: darkgrey"><span style="font-size: 0.5em; color: darkgray">({{timestamp}})</span>: <span>{{msg}}</span></p>
+    {{else}}
+        <p><strong>{{user.username}}</strong>: <span>{{msg}}</span></p>
+    {{/if}}
 </template>
 
 <template name="input">

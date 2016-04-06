@@ -15,5 +15,8 @@ Template.body.helpers({
                 Session.set("room", null);
             }
         }
+    },
+    loggingInClicked: function () {
+        return Session.get("loggingInClicked");
     }
 });

@@ -1,7 +1,13 @@
 <template name="userList">
     <div id="userList" class="well">
-        {{> menu}}
-        <h4>Room: {{roomname}}</h4>
+        <div class="row">
+            <div class="col-xs-6">
+                <h4>Room: {{roomname}}</h4>
+            </div>
+            <div class="col-xs-6">
+                {{> menu}}
+            </div>
+        </div>
         <table class="table table-responsive">
             <thead>
                 {{#if roomCreator}}
@@ -26,13 +32,13 @@
 <template name="user">
     <tr>
         {{#if roomCreator}}
-            <td><button class="btn btn-sm draw">Draw</button></td>
+            <td><button class="btn draw"></button></td>
         {{/if}}
         <td>{{ping}}</td>
         <td>{{username}}</td>
         <td>0</td>
         {{#if roomCreator}}
-            <td><button class="btn btn-sm kick">Kick</button></td>
+            <td><button class="btn kick"></button></td>
         {{/if}}
 
     </tr>

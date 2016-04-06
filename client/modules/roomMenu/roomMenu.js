@@ -99,8 +99,12 @@ Template.joinRoom.helpers({
 });
 
 Template.joinRoom.events({
-    "click tr": function (event) {
+    "click tr": function () {
         Session.set("selectedRoomname", this.roomname);
+    },
+    "dblclick tr": function (event) {
+        Session.set("selectedRoomname", this.roomname);
+        _joinRoom(this.roomname);
     },
     "click #joinRoomJoinBtn": function (event) {
         if(Session.get("selectedRoomname")) {

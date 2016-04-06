@@ -1,13 +1,18 @@
 <template name="signIn">
     {{#if toggleLoginRegister}}
-        {{>register}}
+        {{> register}}
     {{else}}
-        {{>login}}
+        {{> login}}
     {{/if}}
+</template>
+
+<template name="logo">
+    <h1 style="font-family:'3Dumb'; font-weight: bold; z-index: 500;">Pic of the Draw</h1>
 </template>
 
 <template name="login">
     <div class="row well menu30">
+        {{> logo}}
         <form class="form">
             <h2>Log In</h2>
             <input class="form-control" type="text" placeholder="Username" name="loginUsername">
@@ -23,6 +28,7 @@
 
 <template name="register">
     <div class="row well menu30 menu">
+        {{> logo}}
         <form class="form">
             <h2>Register</h2>
             <input class="form-control" type="text" placeholder="Username" name="registerUsername">

@@ -2,25 +2,55 @@
  * Created by James on 3/10/2016.
  */
 Session.setDefault("onRendered", false);
+Session.setDefault("inputWord", undefined);
 
 
-_insertDrawing = function (drawingData, width, height) {
+_insertDrawing = function (word) {
     Drawings.insert({
         user: Meteor.user(),
         ts: new Date(),
-        room: Session.get("roomname"),
-        data: drawingData,
+        room: Session.get("room"),
+        word: word,
+        guessed: false,
+        data: undefined,
         optimised: true,    // Prevents SVG Optimiser removing empty SVG.
-        dimensions: {width: width, height: height}
+        dimensions: {}
     });
 };
 
-_updateDrawing = function (criteria, drawingData) {
-    Drawings.update(criteria,
-        {$set: {data: drawingData, optimised: false}
-        });
-    console.log("_updateDrawing");
+_setWord = function (word) {
+    let r = Session.get('room');
+    let id = Drawings.findOne({room: r}, {sort: {ts: -1}})._id;
+    Drawings.update(id, {$set: {word: word}});
+
 };
+
+_updateDrawingData = function (criteria, drawingData) {
+    Drawings.update(criteria,
+        {
+            $set: {
+                data: drawingData,
+                optimised: false
+            }
+        });
+};
+
+_updateDrawingInit = function (drawingData, width, height) {
+    let r = Session.get('room');
+    let id = Drawings.findOne({room: r}, {sort: {ts: -1}})._id;
+    Drawings.update(id,
+        {
+            $set:
+            {
+                data: drawingData,
+                dimensions:
+                {
+                    width: width,
+                    height: height
+                }
+            }
+        });
+}
 
 _setSvgDimensions = function (data, oldSize, newSize) {
 
@@ -60,12 +90,12 @@ _canvasDimensions = function (containerId) {
 
 };
 
-_updateCanvas = function () {
+_updateCanvasSVG = function () {
     let svg = canvas.toSVG();
     Session.set("svg", svg);
 
     let latestDrawing = Drawings.findOne({}, {sort: {ts: -1}});
-    _updateDrawing(latestDrawing._id,  svg);
+    _updateDrawingData(latestDrawing._id,  svg);
 };
 
 Template.canvas.onRendered(function () {
@@ -81,22 +111,28 @@ Template.canvas.onRendered(function () {
         width: cWidth,
         height:cHeight
     });
-    canvas.freeDrawingCursor = "url('pencil.png'), crosshair";
+    canvas.freeDrawingCursor = "url('cursors/pencil.png'), crosshair";
 
     let svg = canvas.toSVG();
     Session.set("svg", svg);
 
-    _insertDrawing(svg, cWidth, cHeight);
+    _updateDrawingInit(svg, cWidth, cHeight);
 
-    _setBrushSize(1);
+    _setBrushSize(2);
 
+});
 
+Template.canvas.helpers({
+    drawWord: function () {
+        let room = Session.get('room');
+        return Drawings.findOne({room: room}, {sort: {ts: -1}}).word.word;
+    }
 });
 
 Template.canvas.events({
     'click': function() {
 
-        _updateCanvas();
+        _updateCanvasSVG();
 
     }
 });
@@ -117,5 +153,19 @@ Template.svg.helpers({
 
         return _setSvgDimensions(svgData, currentDimensions, newDimensions);
 
+    }
+});
+
+Template.wordInput.events({
+    'submit #wordInput': function(event) {
+        event.preventDefault();
+        console.log(event.target.category.value);
+
+        _insertDrawing({
+            word: event.target.word.value,
+            category: event.target.category.value
+        });
+
+        event.target.word.value = "";
     }
 });

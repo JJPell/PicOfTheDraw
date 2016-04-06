@@ -3,7 +3,11 @@
     {{> toolbar}}
 
     {{#if playersTurn currentUser}}
-        {{> canvas}}
+        {{#if inputWord}}
+            {{> wordInput}}
+        {{else}}
+            {{> canvas}}
+        {{/if}}
     {{else}}
         {{> svg}}
     {{/if}}

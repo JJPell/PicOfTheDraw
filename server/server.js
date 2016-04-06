@@ -8,7 +8,7 @@ Meteor.startup(function () {
     Drawings.remove({});
 });
 
-_removeMessages = function (roomname) {
+_removeRoomMessages = function (roomname) {
     Messages.remove({room: roomname});
 };
 
@@ -21,6 +21,10 @@ _removeRoom = function (id, roomname) {
         console.log("A room has closed/been removed.")
     }
 };
+
+_removeRoomDrawings = function (roomname) {
+    Messages.remove({room: roomname});
+}
 
 _checkForRoomCreator = function (roomId, playersId, callback) {
 
@@ -55,7 +59,8 @@ query.observeChanges({
             _checkForRoomCreator(id, fields.playersId, function (callbackData) {
                 if(callbackData.result === false) {
                     _removeRoom(callbackData.id, callbackData.roomname);
-                    _removeMessages(callbackData.roomname);
+                    _removeRoomMessages(callbackData.roomname);
+                    _removeRoomDrawings(callbackData.roomname);
                 }
             });
         }
