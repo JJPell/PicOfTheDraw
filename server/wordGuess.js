@@ -8,10 +8,8 @@ msgQuery.observeChanges({
 
         let roomname = Messages.findOne(id).room;
         let latestDrawing = Drawings.findOne({room: roomname}, {sort: {ts: -1}});
-        console.log("draw Id: "+ latestDrawing._id);
-        let latestDrawingWord = Drawings.findOne({room: roomname}, {sort: {ts: -1}}).word;
 
-        if(latestDrawingWord) {
+        if(latestDrawing && latestDrawing.word) {
 
             let msg = fields.msg.toLowerCase();
             let word = latestDrawing.word.word.toLowerCase();
