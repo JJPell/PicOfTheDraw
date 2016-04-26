@@ -50,7 +50,7 @@ _updateDrawingInit = function (drawingData, width, height) {
                 }
             }
         });
-}
+};
 
 _setSvgDimensions = function (data, oldSize, newSize) {
 

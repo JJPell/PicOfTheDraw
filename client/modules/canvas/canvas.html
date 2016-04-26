@@ -1,30 +1,33 @@
 <template name="canvas">
     <div id="drawAreaContainer">
-            <h1 style="margin-bottom: -39px">You are drawing: '{{drawWord}}'</h1>
+            <h1 style="margin-bottom: -39px">You are drawing '{{drawWord}}'</h1>
             <canvas id="drawArea"></canvas>
     </div>
 </template>
 
 <template name="wordInput">
     <div id="drawAreaContainer">
-        <form class="form-inline" role="form" id="wordInput">
-            <div class="input-group input-group-lg">
-                <div class="form-group">
-                    <select class="form-control" name="category">
-                        <option value="Person/Place/Animal">Person/Place/Animal</option>
-                        <option value="Object">Object</option>
-                        <option value="Action">Action</option>
-                        <option value="Other">Other</option>
-                    </select>
+        <div id="wordInput" class="well menu30">
+            <h2>Enter the word you wish to draw</h2>
+            <form class="form-inline" role="form" >
+                <div class="input-group input-group-lg">
+                    <div class="form-group">
+                        <select class="form-control" name="category">
+                            <option value="Person/Place/Animal">Person/Place/Animal</option>
+                            <option value="Object">Object</option>
+                            <option value="Action">Action</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input maxlength="30" class="form-control" name="word" type="text">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="form-control" name="submit">Enter</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input maxlength="30" class="form-control" name="word" type="text">
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="form-control" name="submit">Enter</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 </template>
 

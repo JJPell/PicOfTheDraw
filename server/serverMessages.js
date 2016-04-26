@@ -10,9 +10,6 @@ _insertServerMsg = function (text, roomname) {
 
 var playerRoomMessage = function (players, roomname) {
 
-    console.log("players: "+players);
-    console.log("oldPlayers: "+oldPlayers);
-
     let playersAdded = players.map(function (cb) {
         if(oldPlayers.indexOf(cb) < 0) {
             return cb;
@@ -69,3 +66,16 @@ drawingQuery.observeChanges({
         _insertServerMsg(msg, room);
     }
 });
+
+Meteor.users.find({ "status.online": true }).observeChanges({
+    added: function(id) {
+        // id just came online
+        //console.log("User came Online");
+    },
+    removed: function(id) {
+        // id just went offline
+        //console.log("User went Offline");
+
+    }
+});
+

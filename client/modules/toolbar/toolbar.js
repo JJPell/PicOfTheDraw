@@ -18,8 +18,9 @@ _setBrushSize = function (size) {
 };
 
 class Tool {
-    constructor(name, inputType, icon) {
+    constructor(name, title, inputType, icon) {
         this.name = name.capitalize();
+        this.title = title;
         this.id = name + "Tool";
         this.type = inputType;
         this.class = "tool";
@@ -28,14 +29,14 @@ class Tool {
 };
 
 var tools = [
-    new Tool("draw", "button", "images/pencil.png"),
-    new Tool("resize", "button", "images/resize.png"),
-    new Tool("colour", "color", ""),
-    new Tool("drawSize1", "button", "images/drawSize1.png"),
-    new Tool("drawSize2", "button", "images/drawSize2.png"),
-    new Tool("drawSize3", "button", "images/drawSize3.png"),
-    new Tool("drawSize4", "button", "images/drawSize4.png"),
-    new Tool("clear", "button", "images/bin.png"),
+    new Tool("draw", "Draw Mode", "button", "images/pencil.png"),
+    new Tool("resize", "Resize Mode", "button", "images/resize.png"),
+    new Tool("colour", "Colour Picker", "color", ""),
+    new Tool("drawSize1", "Draw Size 1", "button", "images/drawSize1.png"),
+    new Tool("drawSize2", "Draw Size 2", "button", "images/drawSize2.png"),
+    new Tool("drawSize3", "Draw Size 3", "button", "images/drawSize3.png"),
+    new Tool("drawSize4", "Draw Size 4", "button", "images/drawSize4.png"),
+    new Tool("clear", "Clear Canvas", "button", "images/bin.png"),
 
 ];
 
