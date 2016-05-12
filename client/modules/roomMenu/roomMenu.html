@@ -60,10 +60,10 @@
         <form id="createRoomForm">
             <input type="text" name="inputRoomName" class="form-control" placeholder="Room Name" required autofocus>
             <br>
-            <input type="number" name="inputMaxPlayers" class="form-control" placeholder="Max Players" required>
+            <input type="number" name="inputMaxPlayers" class="form-control" placeholder="Room Size (min 2, max 10)" min="2" max="10" required>
             <br>
-        <button id="createRoomBackBtn" class="btn backBtn">Back</button>
-        <button type="submit" id="createRoomCreateBtn" class="btn">Create Room</button>
+        <button title="Back" id="createRoomBackBtn" class="btn backBtn">Back</button>
+        <button title="Create Room" type="submit" id="createRoomCreateBtn" class="btn">Create Room</button>
         </form>
     </div>
 </template>

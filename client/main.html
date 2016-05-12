@@ -1,4 +1,5 @@
 <head>
+    <link rel="icon" sizes="16x16" href="/favicon.png">
     <title>Pic of the Draw</title>
 </head>
 <body>
@@ -9,7 +10,9 @@
         {{#if room currentUser}}
             {{> game}}
         {{else}}
-            {{> menu}}
+            <div id="menuContainer">
+                {{> menu}}
+            </div>
             {{> roomMenuWrapper}}
         {{/if}}
     {{else}}

@@ -1,0 +1,26 @@
+#drawWord {
+    display:inline-block;
+    border-radius: 255px 10px 225px 10px/10px 225px 10px 255px;
+    border:solid 5px #000;
+    background-color: #eee;
+    height: 3em;
+    width: 20%;
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+#playerIsDrawing {
+    display:inline-block;
+    border-radius: 255px 10px 225px 10px/10px 225px 10px 255px;
+    border:solid 5px #000;
+    background-color: #eee;
+    height: 3em;
+    width: 20%;
+    padding-top: 5px;
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+    z-index: 2;
+}

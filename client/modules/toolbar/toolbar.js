@@ -23,8 +23,8 @@ class Tool {
         this.title = title;
         this.id = name + "Tool";
         this.type = inputType;
-        this.class = "tool";
-        this.style = "background: url("+icon+");";
+        this.class = "toolbar__tool";
+        this.style = "background-image: url("+icon+");";
     }
 };
 

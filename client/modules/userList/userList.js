@@ -7,6 +7,11 @@ _newTurn = function (user) {
     let userId = user._id;
     let room = Rooms.findOne({playersId: {$in:[userId]}});
     Rooms.update(room._id, {$set: {playerDrawing: username, playerDrawingId: userId}});
+    
+    let drawing = Drawings.findOne({room: room}, {sort: {ts: -1}});
+    if(drawing) {
+        Drawings.update(drawing._id, {set: {guessed: true}});
+    }
 };
 
 _addToBlackList = function (user) {

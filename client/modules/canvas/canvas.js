@@ -153,6 +153,9 @@ Template.svg.helpers({
 
         return _setSvgDimensions(svgData, currentDimensions, newDimensions);
 
+    },
+    playerDrawing: function () {
+        return drawing = Drawings.findOne({optimised: true}, {sort: {ts: -1}}).user.username;
     }
 });
 

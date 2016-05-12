@@ -1,0 +1,15 @@
+#userList {
+    height: 40%;
+    width: 100%;
+    position: relative;
+    right: 0;
+    top: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#userList__roomName {
+
+    font-size: 1.8rem;
+
+}

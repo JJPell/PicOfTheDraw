@@ -1,5 +1,5 @@
 <template name="menu">
-    <button id="menu" class="btn">Menu <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
+    <button id="menu" class="btn" role="menu">Menu <span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></button>
 </template>
 
 <template name="menuOnClick">
@@ -16,5 +16,5 @@
 </template>
 
 <template name="menuButton">
-    <button {{this.attributes}}>{{this.text}}</button>
+    <button {{this.attributes}} role="menuitem">{{this.text}}</button>
 </template>

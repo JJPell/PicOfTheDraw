@@ -9,11 +9,11 @@ msgQuery.observeChanges({
         let roomname = Messages.findOne(id).room;
         let latestDrawing = Drawings.findOne({room: roomname}, {sort: {ts: -1}});
 
-        if(latestDrawing && latestDrawing.word) {
+        if(latestDrawing && latestDrawing.word && (fields.user !== "server")) {
 
             let msg = fields.msg.toLowerCase();
             let word = latestDrawing.word.word.toLowerCase();
-            if(msg === word) {
+            if(msg.indexOf(word) > -1) {
                 Drawings.update(latestDrawing._id, {$set: {guessed: true}});
                 Rooms.update({roomname: roomname}, {
                     $set: {
