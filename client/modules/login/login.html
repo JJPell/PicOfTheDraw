@@ -1,16 +1,19 @@
-<template name="signIn">
-    {{#if toggleLoginRegister}}
-        {{> register}}
-    {{else}}
-        {{> login}}
-    {{/if}}
-</template>
-
 <template name="logo">
     <h1 style="font-family:'3Dumb'; font-weight: bold; z-index: 500;">Pic of the Draw</h1>
 </template>
 
+<template name="adsense">
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({
+            google_ad_client: "ca-pub-4818466300133039",
+            enable_page_level_ads: true
+        });
+    </script>
+</template>
+
 <template name="login">
+    {{> adsense}}
     <div class="row well menu30">
         {{> logo}}
         <form class="form">
@@ -22,11 +25,12 @@
             <input class="form-control" type="submit" value="Login">
         </form>
         <br>
-        <i>Don't have an account? <a id="registerOption">Register</a></i>
+        <i>Don't have an account? <a id="registerOption" href="{{pathFor route='register'}}">Register</a></i>
     </div>
 </template>
 
 <template name="register">
+    {{> adsense}}
     <div class="row well menu30 menu">
         {{> logo}}
         <form class="form">
@@ -40,6 +44,6 @@
             <input class="form-control" type="submit" value="Register">
         </form>
         <br>
-        <i>Already have an account? <a id="loginOption">Log In</a></i>
+        <i>Already have an account? <a id="loginOption" href="{{pathFor route='login'}}">Log In</a></i>
     </div>
 </template>

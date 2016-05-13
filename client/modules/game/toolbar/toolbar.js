@@ -56,8 +56,7 @@ Template.toolbar.events({
     "click #resizeTool": function () {
         canvas.isDrawingMode = false;
     },
-    "mouseleave #colourTool": function (event) {
-        console.log(event.target.value);
+    "input #colourTool": function (event) {
         canvas.freeDrawingBrush.color = event.target.value;
     },
     "click #drawSize1Tool": function (event) {

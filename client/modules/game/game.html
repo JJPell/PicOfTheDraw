@@ -1,3 +1,19 @@
+<template name="gameWrapper">
+
+    {{#if menuClicked}}
+        {{> menuOnClick}}
+    {{/if}}
+    {{#if room currentUser}}
+        {{> game}}
+    {{else}}
+        <div id="menuContainer">
+            {{> menu}}
+        </div>
+        {{> roomMenuWrapper}}
+    {{/if}}
+
+</template>
+
 <template name="game">
 
     {{> toolbar}}
@@ -18,4 +34,6 @@
     </div>
 
 </template>
+
+
 

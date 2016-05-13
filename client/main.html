@@ -1,26 +1,9 @@
-<head>
-    <link rel="icon" sizes="16x16" href="/favicon.png">
-    <title>Pic of the Draw</title>
-</head>
-<body>
+<template name="home">
+
     {{#if currentUser}}
-        {{#if menuClicked}}
-            {{> menuOnClick}}
-        {{/if}}
-        {{#if room currentUser}}
-            {{> game}}
-        {{else}}
-            <div id="menuContainer">
-                {{> menu}}
-            </div>
-            {{> roomMenuWrapper}}
-        {{/if}}
+        {{>gameWrapper}}
     {{else}}
-        {{#if loggingInClicked}}
-            {{> signIn}}
-        {{else}}
-            {{> splash}}
-        {{/if}}
+        {{> splash}}
     {{/if}}
 
-</body>
+</template>

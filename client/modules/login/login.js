@@ -3,12 +3,6 @@
  */
 Session.setDefault("toggleLoginRegister", false);
 
-Template.signIn.helpers({
-    toggleLoginRegister: function () {
-        return Session.get("toggleLoginRegister");
-    }
-});
-
 Template.login.helpers({
     loginError: function () {
         if(Session.get("loginError")) {
@@ -29,9 +23,8 @@ Template.login.events({
                 Session.set("loginError", Error)
             }
         });
-    },
-    "click #registerOption": function (event) {
-        Session.set("toggleLoginRegister", true);
+
+        Router.go('/');
     }
 });
 
@@ -65,9 +58,7 @@ Template.register.events({
             Session.set("registerError", error);
         }
 
-    },
-    "click #loginOption": function (event) {
-        event.preventDefault();
-        Session.set("toggleLoginRegister", false);
+        Router.go('/');
+
     }
 });

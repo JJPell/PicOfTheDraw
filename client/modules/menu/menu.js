@@ -49,14 +49,15 @@ _buttonConditions = function (buttons) {
 
 };
 
-Template.body.helpers({
+Template.gameWrapper.helpers({
     menuClicked: function () {
         return Session.get("menuClicked");
     }
 });
 
-Template.body.events({
+Template.menu.events({
     "click #menu": function (event) {
+        console.log("Menu clicked");
         let menuClicked = Session.get("menuClicked");
         Session.set("menuClicked", !menuClicked);
     }

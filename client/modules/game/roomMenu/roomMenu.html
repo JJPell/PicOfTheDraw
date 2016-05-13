@@ -12,13 +12,13 @@
 
 <template name="roomMenu">
     <div class="row well menu30">
+        {{> logo}}
+        <h4>Join an existing room or create your own room</h4>
+        <br>
         <div class="col-sm-6">
-            <h4>Join a room</h4>
             <button id="joinRoomBtn" class="btn">Join Room</button>
         </div>
         <div class="col-sm-6">
-            <h4>Create a new room</h4>
-
             <button id="createRoomBtn" class="btn">Create Room</button>
         </div>
     </div>
@@ -26,6 +26,7 @@
 
 <template name="joinRoom">
     <div class="row well menu30">
+        {{> logo}}
         <h4>Join Room</h4>
         <h4><small>Room List</small></h4>
         <table class="table table-hover">
@@ -56,6 +57,7 @@
 
 <template name="createRoom">
     <div class="row well menu30">
+        {{> logo}}
         <h4>Create New Room</h4>
         <form id="createRoomForm">
             <input type="text" name="inputRoomName" class="form-control" placeholder="Room Name" required autofocus>
